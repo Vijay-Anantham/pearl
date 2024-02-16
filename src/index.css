@@ -16,3 +16,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.yaay {
+  width: 300px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
+  max-width: 100%; /* Ensure it doesn't exceed its container width */
+  border-radius: 8px; /* Optional: Add border-radius as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box-shadow as needed */
+}
+
+body {
+  background-color: rgb(232, 247, 254);
+}

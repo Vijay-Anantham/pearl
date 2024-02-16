@@ -9,18 +9,41 @@ export default function Page() {
     setNoCount(noCount + 1);
   };
 
+  const handleYesClick = async () => {
+    try {
+      const response = await fetch('YOUR_FIREBASE_FUNCTION_ENDPOINT', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: getNoButtonText(),
+        }),
+      });
+  
+      setYesPressed(true);
+      if (response.ok) {
+        console.log("notified")
+      } else {
+        console.log("Got errors")
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };  
+
   const getNoButtonText = () => {
     const phrases = [
       "No",
       "Are you sure?",
+      "Hi nanaa..",
       "Really sure?",
       "hey dancer plss!",
       "Have a heart!",
       "unaku pidicha cheescake!",
       "Hot chocolate kudikalaam!",
-      "dress shopping polaam..!",
-      "dress shopping polaam..!",
-      "vena aprm ride polaam..?",
+      "shopping polaam..!",
+      "bike ride polaam..?",
       "Barbeque nation polaam..",
       "Give it another thought!",
       "This could be a mistake!",
@@ -39,16 +62,19 @@ export default function Page() {
     <div className="overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white text-zinc-900">
       {yesPressed ? (
         <>
-          <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" />
+          <img 
+            className="yaay"
+            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmx4MnU4eTF6d2ZyMnoyc2tncTgwdjRreTY1cmVmMWV0NDBlYXc1dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hjhdkfALrw3aUpFfS0/giphy.gif" 
+          />
           <div className="text-4xl md:text-6xl font-bold my-4">
-            Ok Yayyyyy!!!
+            Okii polamee 🙈!!!
           </div>
         </>
       ) : (
         <>
           <img
             className="h-[230px] rounded-lg shadow-lg"
-            src="https://gifdb.com/images/high/cute-Love-bear-roses-ou7zho5oosxnpo6k.gif"
+            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzNjZ3V0a202ajdleGdid295aXl4eXExdWxzdm90ZjRjbHhtMm1ybCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1msDUtCpBk1BihoOGD/giphy.gif"
           />
           <h1 className="text-4xl md:text-6xl my-4 text-center">
             Shall we go out to some cute place?
@@ -57,7 +83,7 @@ export default function Page() {
             <button
               className={`bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mr-4`}
               style={{ fontSize: yesButtonSize }}
-              onClick={() => setYesPressed(true)}
+              onClick={() => handleYesClick}
             >
               Yes
             </button>
@@ -79,7 +105,7 @@ const Footer = () => {
   return (
     <a
       className="fixed bottom-2 right-2 backdrop-blur-md opacity-80 hover:opacity-95 border p-1 rounded border-rose-300"
-      href="https://github.com/Xeven777/valentine"
+      href="https://github.com/"
       target="__blank"
     >
       Made with{" "}
@@ -89,3 +115,5 @@ const Footer = () => {
     </a>
   );
 };
+
+
