@@ -9,29 +9,6 @@ export default function Page() {
     setNoCount(noCount + 1);
   };
 
-  const handleYesClick = async () => {
-    try {
-      const response = await fetch('YOUR_FIREBASE_FUNCTION_ENDPOINT', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: getNoButtonText(),
-        }),
-      });
-  
-      setYesPressed(true);
-      if (response.ok) {
-        console.log("notified")
-      } else {
-        console.log("Got errors")
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };  
-
   const getNoButtonText = () => {
     const phrases = [
       "No",
@@ -83,7 +60,7 @@ export default function Page() {
             <button
               className={`bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mr-4`}
               style={{ fontSize: yesButtonSize }}
-              onClick={() => handleYesClick}
+              onClick={() => setYesPressed(true)}
             >
               Yes
             </button>
@@ -115,5 +92,3 @@ const Footer = () => {
     </a>
   );
 };
-
-
